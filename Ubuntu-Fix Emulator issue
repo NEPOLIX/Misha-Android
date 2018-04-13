@@ -1,0 +1,39 @@
+https://stackoverflow.com/questions/36554322/cannot-start-emulator-in-android-studio-2-0
+https://stackoverflow.com/questions/37653391/cannot-launch-avd-in-emulator-android-studio
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Verify that you have installed in your system lib64stdc++6
+
+With a 32 bits operating system :
+
+# apt-get install lib64stdc++6
+With a 64 bits operating system with multiarch enabled :
+
+# apt-get install lib64stdc++6:i386
+Then link the new installed libraries to the android sdk tools path
+
+$ cd $ANDROID_HOME/android-sdk-linux_x86/tools/lib64/libstdc++
+$ mv libstdc++.so.6 libstdc++.so.6.bak
+$ ln -s /usr/lib64/libstdc++.so.6 $ANDROID_HOME/android-sdk-linux_x86/tools/lib64/libstdc++
+EDIT: in 15.10 x64 with current Sdk (23), the folder is $ANDROID_HOME/Sdk
+
+emulator -use-system-libs -avd YOUR_VIRTUAL_DEVICE_NAME
